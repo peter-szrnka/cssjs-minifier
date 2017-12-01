@@ -31,10 +31,15 @@ java -jar cssjs-minifier.jar
 ```
 
 ## Settings
-- *jscompressor*: yui | closurecompiler
-- *jsfolder*: The directory where input JS files are located.
-- *jsout*: The directory where output JS file should be placed.
-- *jscompiletype*: WHITESPACE | SIMPLE | ADVANCED
-- *csscompressor*: yui
-- *cssfolder*: The directory where input CSS files are located.
-- *cssout*: The directory where output CSS file should be placed.
+
+The config.properties should contains all the necessary config settings.
+
+| Key | Description | Default value |
+| ------------- | ------------- | ------------- |
+| jscompressor | Possible values: yui,closurecompiler | yui |
+| jsfolder | The directory where input JS files are located. | current dir: "." |
+| jsout | The name of JS output file. | ./out.min.js |
+| jscompiletype | Possible values(case sensitive): WHITESPACE, SIMPLE, ADVANCED | SIMPLE |
+| csscompressor | yui | yui |
+| cssfolder | The directory where input CSS files are located. | current dir: "." |
+| cssout | The name of CSS output file. | ./out.min.css |
