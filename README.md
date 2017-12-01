@@ -2,10 +2,11 @@
 
 A small, Java based CSS/JS file merger & compressor. ( First I created it for myself. :) ) It's very useful for local Javascript (Angular JS, Progressive Web Apps, etc.) web development.
 
-![Build status](https://travis-ci.org/szrnka-peter/cssjs-minifier.svg?branch=master)
-[![codecov](https://codecov.io/gh/szrnka-peter/cssjs-minifier/branch/master/graph/badge.svg)](https://codecov.io/gh/szrnka-peter/cssjs-minifier)
+## Current status
 
-
+| Build | Code coverage |
+| ------------- | ------------- |
+| ![Build status](https://travis-ci.org/szrnka-peter/cssjs-minifier.svg?branch=master) | [![codecov](https://codecov.io/gh/szrnka-peter/cssjs-minifier/branch/master/graph/badge.svg)](https://codecov.io/gh/szrnka-peter/cssjs-minifier)
 
 ## Used technologies
 - Java 7
