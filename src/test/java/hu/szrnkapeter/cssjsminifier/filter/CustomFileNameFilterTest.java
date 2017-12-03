@@ -3,8 +3,10 @@ package hu.szrnkapeter.cssjsminifier.filter;
 import java.io.File;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class CustomFileNameFilterTest {
 
 	private static final String EXTENSION1 = "css";

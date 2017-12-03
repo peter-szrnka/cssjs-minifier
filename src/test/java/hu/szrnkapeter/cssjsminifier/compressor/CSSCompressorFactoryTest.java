@@ -6,6 +6,7 @@ import org.junit.Test;
 import hu.szrnkapeter.cssjsminifier.compressor.css.CSSCompressor;
 import hu.szrnkapeter.cssjsminifier.compressor.css.YUICSSCompressor;
 
+
 public class CSSCompressorFactoryTest {
 
 	@Test(expected = UnsupportedOperationException.class)

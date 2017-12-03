@@ -9,7 +9,9 @@ import org.junit.Test;
 import org.mozilla.javascript.EvaluatorException;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
+import org.junit.Ignore;
 
+@Ignore
 public class YUIJSCompressorTest {
 
 	@Test(expected = EvaluatorException.class)

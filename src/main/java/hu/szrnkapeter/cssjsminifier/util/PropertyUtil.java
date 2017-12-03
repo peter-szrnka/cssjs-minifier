@@ -8,49 +8,53 @@ import java.util.Properties;
 
 public class PropertyUtil {
 
-	public static Config loadProperties() {
-		final Config config = new Config();
-		final Properties prop = new Properties();
-		InputStream input = null;
+    public static Config loadProperties() {
+        return loadProperties("config.properties");
+    }
 
-		PropertyUtil.class.getResourceAsStream("config.properties");
+    public static Config loadProperties(String propertyFile) {
+        final Config config = new Config();
+        final Properties prop = new Properties();
+        InputStream input = null;
 
-		if (!new File("config.properties").exists()) {
-			System.out.println("No configuration file exists.");
-			config.setJsCompressor("yui");
-			config.setJsFolder(".");
-			config.setJsOut("./out.min.js");
-			config.setJsCompileType(JSCompileType.SIMPLE);
-			config.setCssCompressor("yui");
-			config.setCssFolder(".");
-			config.setCssOut("./out.min.css");
-			return config;
-		}
+        PropertyUtil.class.getResourceAsStream(propertyFile);
 
-		try {
-			input = new FileInputStream("config.properties");
-			prop.load(input);
+        if (!new File(propertyFile).exists()) {
+            System.out.println("No configuration file exists.");
+            config.setJsCompressor("yui");
+            config.setJsFolder(".");
+            config.setJsOut("./out.min.js");
+            config.setJsCompileType(JSCompileType.SIMPLE);
+            config.setCssCompressor("yui");
+            config.setCssFolder(".");
+            config.setCssOut("./out.min.css");
+            return config;
+        }
 
-			config.setJsCompressor(prop.getProperty("jscompressor"));
-			config.setJsFolder(prop.getProperty("jsfolder"));
-			config.setJsOut(prop.getProperty("jsout"));
-			config.setJsCompileType(JSCompileType.valueOf(prop.getProperty("jscompiletype")));
-			config.setCssCompressor(prop.getProperty("csscompressor"));
-			config.setCssFolder(prop.getProperty("cssfolder"));
-			config.setCssOut(prop.getProperty("cssout"));
+        try {
+            input = new FileInputStream(propertyFile);
+            prop.load(input);
 
-		} catch (final IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (final IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+            config.setJsCompressor(prop.getProperty("jscompressor"));
+            config.setJsFolder(prop.getProperty("jsfolder"));
+            config.setJsOut(prop.getProperty("jsout"));
+            config.setJsCompileType(JSCompileType.valueOf(prop.getProperty("jscompiletype")));
+            config.setCssCompressor(prop.getProperty("csscompressor"));
+            config.setCssFolder(prop.getProperty("cssfolder"));
+            config.setCssOut(prop.getProperty("cssout"));
 
-		return config;
-	}
+        } catch (final IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return config;
+    }
 }

@@ -1,12 +1,10 @@
 package hu.szrnkapeter.cssjsminifier.util;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import hu.szrnkapeter.cssjsminifier.util.Config;
-import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
-import hu.szrnkapeter.cssjsminifier.util.PropertyUtil;
-
+@Ignore
 public class PropertyUtilTest {
 
 	@Test

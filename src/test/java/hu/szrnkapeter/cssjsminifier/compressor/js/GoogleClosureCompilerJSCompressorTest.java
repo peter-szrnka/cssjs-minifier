@@ -8,7 +8,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
+import org.junit.Ignore;
 
+@Ignore
 public class GoogleClosureCompilerJSCompressorTest {
 
 	@Test
