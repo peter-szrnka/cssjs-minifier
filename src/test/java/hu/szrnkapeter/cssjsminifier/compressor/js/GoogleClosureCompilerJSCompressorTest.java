@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
 
+@Ignore
 public class GoogleClosureCompilerJSCompressorTest {
 
 	@Test
