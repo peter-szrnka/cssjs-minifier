@@ -5,10 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
 public class YUICSSCompressorTest {
 
 	@Test
@@ -27,3 +25,4 @@ public class YUICSSCompressorTest {
 		Assert.assertEquals("Wrong result!", ".custom-style{color:fff;}", result);
 	}
 }
+
