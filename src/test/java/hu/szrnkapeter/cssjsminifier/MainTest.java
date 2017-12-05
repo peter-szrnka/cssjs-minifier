@@ -17,7 +17,7 @@ public class MainTest {
 		final String[] strings = new String[0];
 
 		final Path currentDir = FileSystems.getDefault().getPath(new File("").getAbsolutePath() + "/testcss/");
-		final Path tempDir = Files.createDirectory(currentDir);
+		final Path tempDir = Files.exists(currentDir) ? currentDir : Files.createDirectory(currentDir);
 
 		final Path tempFile = Files.createTempFile(tempDir, "prefix", ".css");
 		final Path tempMinifiedFile = Files.createTempFile(tempDir, "prefix", ".min.css");
@@ -48,7 +48,7 @@ public class MainTest {
 		final String[] strings = new String[0];
 
 		final Path currentDir = FileSystems.getDefault().getPath(new File("").getAbsolutePath() + "/testjs/");
-		final Path tempDir = Files.createDirectory(currentDir);
+		final Path tempDir = Files.exists(currentDir) ? currentDir : Files.createDirectory(currentDir);
 
 		final Path tempFile = Files.createTempFile(tempDir, "prefix", ".js");
 		final Path tempMinifiedFile = Files.createTempFile(tempDir, "prefix", ".min.js");
@@ -79,7 +79,7 @@ public class MainTest {
 		final String[] strings = new String[0];
 
 		final Path currentDir = FileSystems.getDefault().getPath(new File("").getAbsolutePath() + "/testjs/");
-		final Path tempDir = Files.createDirectory(currentDir);
+		final Path tempDir = Files.exists(currentDir) ? currentDir : Files.createDirectory(currentDir);
 
 		Main.main(strings);
 
