@@ -9,9 +9,7 @@ import org.junit.Test;
 import org.mozilla.javascript.EvaluatorException;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
-import org.junit.Ignore;
 
-@Ignore
 public class YUIJSCompressorTest {
 
 	@Test(expected = EvaluatorException.class)
@@ -26,6 +24,8 @@ public class YUIJSCompressorTest {
 		final String result = compressor.compress(tempFile.getAbsolutePath(), JSCompileType.SIMPLE);
 
 		tempFile.deleteOnExit();
+
+		Assert.assertEquals("Wrong result!", "var doit=function(str){alert(str)};", result);
 	}
 
 	@Test
