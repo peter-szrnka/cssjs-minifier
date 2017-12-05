@@ -7,6 +7,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MainTest {
@@ -33,7 +34,10 @@ public class MainTest {
 
 		Main.main(strings);
 
-		new File("out.test.min.css").deleteOnExit();
+		final File outFile = new File("out.test.min.css");
+		Assert.assertTrue("The out css file must exists!", outFile.exists());
+
+		outFile.deleteOnExit();
 		Files.deleteIfExists(tempMinifiedFile);
 		Files.deleteIfExists(tempFile);
 		Files.deleteIfExists(tempDir);
@@ -61,7 +65,10 @@ public class MainTest {
 
 		Main.main(strings);
 
-		new File("out.test.min.js").deleteOnExit();
+		final File outFile = new File("out.test.min.js");
+		Assert.assertTrue("The out js file must exists!", outFile.exists());
+
+		outFile.deleteOnExit();
 		Files.deleteIfExists(tempMinifiedFile);
 		Files.deleteIfExists(tempFile);
 		Files.deleteIfExists(tempDir);
