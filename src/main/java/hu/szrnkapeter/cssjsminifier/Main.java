@@ -28,7 +28,7 @@ public class Main {
 		if (config.getCssFolder() != null) {
 			// Currently it's just merge the css files
 			final File folder = new File(config.getCssFolder());
-			final CustomFileNameFilter filter = new CustomFileNameFilter("js");
+			final CustomFileNameFilter filter = new CustomFileNameFilter("css");
 
 			if (folder.isDirectory() && folder.listFiles(filter).length > 0) {
 				long i = 0;
@@ -61,7 +61,8 @@ public class Main {
 		}
 		if (config.getJsFolder() != null) {
 			final File folder = new File(config.getJsFolder());
-			final CustomFileNameFilter filter = new CustomFileNameFilter("css");
+			System.out.println("JS folder: " + folder.getAbsolutePath());
+			final CustomFileNameFilter filter = new CustomFileNameFilter("js");
 			long i = 0;
 
 			if (folder.isDirectory() && folder.listFiles(filter).length > 0) {
