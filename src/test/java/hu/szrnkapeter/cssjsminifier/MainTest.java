@@ -5,13 +5,11 @@ import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class MainTest {
 
 	@Test
-	@Ignore
 	public void test() throws Exception {
 		final String[] strings = new String[0];
 
@@ -20,7 +18,7 @@ public class MainTest {
 		final Path tempFile = Files.createTempFile(tempDir, "prefix", "js");
 		final BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile.toFile()));
 		final StringBuilder sb = new StringBuilder();
-		sb.append("var doit = function(str) {\r\nalert (str);\r\n};");
+		sb.append("var doit = function(str) {\r\nalert (str);\r\n};doit();");
 		bw.write(sb.toString());
 		bw.close();
 
