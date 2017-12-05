@@ -1,7 +1,5 @@
 package hu.szrnkapeter.cssjsminifier.util;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -17,9 +15,7 @@ public class PropertyUtil {
         final Properties prop = new Properties();
         InputStream input = null;
 
-        PropertyUtil.class.getResourceAsStream(propertyFile);
-
-        if (!new File(propertyFile).exists()) {
+        if (PropertyUtil.class.getClassLoader().getResource(propertyFile) == null) {
             System.out.println("No configuration file exists.");
             config.setJsCompressor("yui");
             config.setJsFolder(".");
@@ -32,7 +28,7 @@ public class PropertyUtil {
         }
 
         try {
-            input = new FileInputStream(propertyFile);
+            input = PropertyUtil.class.getClassLoader().getResourceAsStream(propertyFile);
             prop.load(input);
 
             config.setJsCompressor(prop.getProperty("jscompressor"));

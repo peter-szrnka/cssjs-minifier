@@ -5,16 +5,15 @@ import java.io.FilenameFilter;
 
 public class CustomFileNameFilter implements FilenameFilter {
 
-	private String extension;
+    private String extension;
 
-	public CustomFileNameFilter(final String extension) {
-		this.extension = extension;
-	}
+    public CustomFileNameFilter(final String extension) {
+        this.extension = extension;
+    }
 
-	@Override
-	public boolean accept(final File dir, final String name) {
-		name.toLowerCase().endsWith(extension);
-		return false;
-	}
+    @Override
+    public boolean accept(final File dir, final String name) {
+        return name.toLowerCase().endsWith(extension);
+    }
 
 }
