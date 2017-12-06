@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.szrnkapeter.cssjsminifier</groupId>
     <artifactId>cssjs-minifier</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 	
     <name>cssjs-minifier</name>
 
@@ -34,7 +34,7 @@
     </dependencies>
 
     <build>
-        <finalName>jsmerge</finalName>
+        <finalName>cssjs-minifier</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
