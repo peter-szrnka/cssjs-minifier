@@ -35,7 +35,7 @@ public class Main {
 				final BufferedWriter writer = new BufferedWriter(new FileWriter(config.getCssOut()));
 				for (final File item : folder.listFiles(filter)) {
 					System.out.print("File: " + item.getName() + "; Filesize: " + item.length() / 1024 + "KB");
-					if (!item.getName().toLowerCase().contains("min")) {
+					if (!item.getName().toLowerCase().endsWith(".min.css")) {
 						writer.append(cssCompressorFactory.getCssCompressor().compress(item.getAbsolutePath()));
 						writer.newLine();
 						System.out.println(" - compressed");
@@ -70,7 +70,7 @@ public class Main {
 				for (final File item : folder.listFiles(filter)) {
 
 					System.out.print("File: " + item.getName() + "; Filesize: " + item.length() / 1024 + "KB");
-					if (!item.getName().toLowerCase().contains("min")) {
+					if (!item.getName().toLowerCase().endsWith(".min.js")) {
 						writer.append(jsCompressorFactory.getJsCompressor().compress(item.getAbsolutePath(), config.getJsCompileType()));
 						writer.newLine();
 
