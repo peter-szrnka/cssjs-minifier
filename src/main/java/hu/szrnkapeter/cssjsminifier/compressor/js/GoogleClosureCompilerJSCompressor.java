@@ -28,7 +28,7 @@ public class GoogleClosureCompilerJSCompressor implements JSCompressor {
 			CompilationLevel.WHITESPACE_ONLY.setOptionsForCompilationLevel(options);
 		} else if (JSCompileType.SIMPLE.equals(compileType)) {
 			CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
-		} else if (JSCompileType.ADVANCED.equals(compileType)) {
+		} else {
 			CompilationLevel.ADVANCED_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
 		}
 
