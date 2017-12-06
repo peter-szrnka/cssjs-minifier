@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
@@ -13,7 +12,6 @@ import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
 public class GoogleClosureCompilerJSCompressorTest {
 
 	@Test
-        @Ignore
 	public void test_normal_advanced_empty() throws Exception {
 		final GoogleClosureCompilerJSCompressor compressor = new GoogleClosureCompilerJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
@@ -30,7 +28,6 @@ public class GoogleClosureCompilerJSCompressorTest {
 	}
 
 	@Test
-        @Ignore
 	public void test_normal_advanced_withcall() throws Exception {
 		final GoogleClosureCompilerJSCompressor compressor = new GoogleClosureCompilerJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
@@ -47,7 +44,6 @@ public class GoogleClosureCompilerJSCompressorTest {
 	}
 
 	@Test
-        @Ignore
 	public void test_normal_simple() throws Exception {
 		final GoogleClosureCompilerJSCompressor compressor = new GoogleClosureCompilerJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");

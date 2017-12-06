@@ -24,11 +24,11 @@ public class GoogleClosureCompilerJSCompressor implements JSCompressor {
 		options.setLanguageIn(LanguageMode.ECMASCRIPT5);
 		options.setLanguageOut(LanguageMode.ECMASCRIPT5);
 
-		if (JSCompileType.WHITESPACE.name().equals(compileType)) {
+		if (JSCompileType.WHITESPACE.equals(compileType)) {
 			CompilationLevel.WHITESPACE_ONLY.setOptionsForCompilationLevel(options);
-		} else if (JSCompileType.SIMPLE.name().equals(compileType)) {
+		} else if (JSCompileType.SIMPLE.equals(compileType)) {
 			CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
-		} else if (JSCompileType.ADVANCED.name().equals(compileType)) {
+		} else if (JSCompileType.ADVANCED.equals(compileType)) {
 			CompilationLevel.ADVANCED_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
 		}
 
