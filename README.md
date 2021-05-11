@@ -9,7 +9,7 @@ A small, Java based CSS/JS file merger & compressor. ( First I created it for my
 | ![Build status](https://travis-ci.org/szrnka-peter/cssjs-minifier.svg?branch=master) | [![codecov](https://codecov.io/gh/szrnka-peter/cssjs-minifier/branch/master/graph/badge.svg)](https://codecov.io/gh/szrnka-peter/cssjs-minifier)
 
 ## Used technologies
-- Java 7
+- Java 8
 - Maven
 - YUI compressor
 - Google Closure Compiler
