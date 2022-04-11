@@ -18,7 +18,6 @@ public class PropertyUtil {
     public static Config loadProperties(String propertyFile) {
         final Config config = new Config();
         final Properties prop = new Properties();
-        InputStream input = null;
 
         if (PropertyUtil.class.getClassLoader().getResourceAsStream(propertyFile) == null) {
         	LOGGER.info(() -> "No configuration file exists.");
@@ -32,8 +31,8 @@ public class PropertyUtil {
             return config;
         }
 
-        try {
-            input = PropertyUtil.class.getClassLoader().getResourceAsStream(propertyFile);
+        try (InputStream input = PropertyUtil.class.getClassLoader().getResourceAsStream(propertyFile)) {
+ 
             prop.load(input);
 
             config.setJsCompressor(prop.getProperty("jscompressor"));
@@ -46,14 +45,6 @@ public class PropertyUtil {
 
         } catch (final IOException ex) {
         	LOGGER.severe(ex::getMessage);
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (final IOException e) {
-                	LOGGER.severe(e::getMessage);
-                }
-            }
         }
 
         return config;
