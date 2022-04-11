@@ -24,7 +24,8 @@ class YUIJSCompressorTest {
 		bw.write(sb.toString());
 		bw.close();
 		
-		EvaluatorException exception = assertThrows(EvaluatorException.class, () ->  compressor.compress(tempFile.getAbsolutePath(), JSCompileType.SIMPLE));
+		String absolutePath = tempFile.getAbsolutePath();
+		EvaluatorException exception = assertThrows(EvaluatorException.class, () ->  compressor.compress(absolutePath, JSCompileType.SIMPLE));
 		assertEquals("Compilation produced 1 syntax errors.", exception.getMessage());
 
 		tempFile.deleteOnExit();
