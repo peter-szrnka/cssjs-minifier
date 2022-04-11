@@ -10,10 +10,9 @@ import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
+import com.google.javascript.jscomp.SourceFile;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
-
-import com.google.javascript.jscomp.SourceFile;
 
 public class GoogleClosureCompilerJSCompressor implements JSCompressor {
 
@@ -32,7 +31,7 @@ public class GoogleClosureCompilerJSCompressor implements JSCompressor {
 			CompilationLevel.ADVANCED_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
 		}
 
-		List<SourceFile> list = null;
+		List<SourceFile> list = new ArrayList<>();
 
 		try {
 			list = AbstractCommandLineRunner.getBuiltinExterns(options);

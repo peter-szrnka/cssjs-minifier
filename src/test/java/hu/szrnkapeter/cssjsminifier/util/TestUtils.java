@@ -2,6 +2,12 @@ package hu.szrnkapeter.cssjsminifier.util;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+
+import org.opentest4j.AssertionFailedError;
 
 public class TestUtils {
 
@@ -11,5 +17,15 @@ public class TestUtils {
 		constructor.setAccessible(true);
 		constructor.newInstance();
 		constructor.setAccessible(false);
+	}
+	
+	public static void assertLogExists(List<LogRecord> logs, Level level, String expectedMessage) {
+		Optional<LogRecord> foundEvent = logs.stream()
+				.filter(log -> level == log.getLevel() && log.getMessage().contains(expectedMessage))
+				.findAny();
+
+		if (!foundEvent.isPresent()) {
+			throw new AssertionFailedError("Log message('" + expectedMessage + "') cannot be found!");
+		}
 	}
 }

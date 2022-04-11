@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
 
@@ -17,7 +18,7 @@ import hu.szrnkapeter.cssjsminifier.util.PropertyUtil;
 
 public class Main {
 
-	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());  
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
 	/**
 	 * 1. argument: Directory of js files
@@ -56,15 +57,15 @@ public class Main {
 	
 	private static void executeCompression(String scope, String folderPath, String outPath, UnaryOperator<String> supplyFunction) throws IOException {
 		final File folder = new File(folderPath);
-		LOGGER.info(scope + " folder: " + folder.getAbsolutePath());
+		LOGGER.info(() -> String.format("%s folder: %s", scope.toUpperCase(), folderPath));
 		final CustomFileNameFilter filter = new CustomFileNameFilter(scope);
-		long i = 0;
+		AtomicLong i = new AtomicLong(0);
 
 		if (folder.isDirectory() && folder.listFiles(filter).length > 0) {
 			try(BufferedWriter writer = new BufferedWriter(new FileWriter(outPath))) {
 				for (final File item : folder.listFiles(filter)) {
 
-					LOGGER.info(String.format("File: %s; Filesize: %s KB", item.getName(), (item.length() / 1024)));
+					LOGGER.info(() -> String.format("File: %s; Filesize: %s KB", item.getName(), (item.length() / 1024)));
 					if (!item.getName().toLowerCase().endsWith(".min." + scope)) {
 						writer.append(supplyFunction.apply(item.getAbsolutePath()));
 						writer.newLine();
@@ -80,14 +81,15 @@ public class Main {
 						}
 						LOGGER.info(" - compress skipped");
 					}
-					i++;
+
+					i.incrementAndGet();
 				}
 			}
 
 			LOGGER.info("--------------------------------------");
-			LOGGER.info(i + " file added. " + scope + " Output: " + outPath);
+			LOGGER.info(() -> String.format("%d file added. %s Outpout: %s", i.get(), scope, outPath));
 		} else {
-			LOGGER.info("No " + scope + " file found.");
+			LOGGER.info(() -> String.format("No %s file found.", scope));
 		}
 	}
 }

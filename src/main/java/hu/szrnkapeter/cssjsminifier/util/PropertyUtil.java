@@ -3,8 +3,11 @@ package hu.szrnkapeter.cssjsminifier.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class PropertyUtil {
+	
+	private static final Logger LOGGER = Logger.getLogger(PropertyUtil.class.getName());
 	
 	private PropertyUtil() {}
 
@@ -18,7 +21,7 @@ public class PropertyUtil {
         InputStream input = null;
 
         if (PropertyUtil.class.getClassLoader().getResource(propertyFile) == null) {
-            System.out.println("No configuration file exists.");
+        	LOGGER.info(() -> "No configuration file exists.");
             config.setJsCompressor("yui");
             config.setJsFolder(".");
             config.setJsOut("./out.min.js");
@@ -42,7 +45,7 @@ public class PropertyUtil {
             config.setCssOut(prop.getProperty("cssout"));
 
         } catch (final IOException ex) {
-            ex.printStackTrace();
+        	LOGGER.severe(ex::getMessage);
         } finally {
             if (input != null) {
                 try {

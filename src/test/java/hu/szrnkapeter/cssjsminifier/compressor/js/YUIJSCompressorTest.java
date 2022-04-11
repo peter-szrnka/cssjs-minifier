@@ -14,17 +14,18 @@ import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
 
 class YUIJSCompressorTest {
 
-	@Test//(expected = EvaluatorException.class)
+	@Test
 	void test_exception1() throws Exception {
 		final YUIJSCompressor compressor = new YUIJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
 		final BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
 		final StringBuilder sb = new StringBuilder();
-		sb.append("function(str {\r\nalert (str);\r\n}");
+		sb.append("function(str {\r\nalert (str)\r\n}");
 		bw.write(sb.toString());
 		bw.close();
 		
-		assertThrows(EvaluatorException.class, () ->  compressor.compress(tempFile.getAbsolutePath(), JSCompileType.SIMPLE));
+		EvaluatorException exception = assertThrows(EvaluatorException.class, () ->  compressor.compress(tempFile.getAbsolutePath(), JSCompileType.SIMPLE));
+		assertEquals("Compilation produced 1 syntax errors.", exception.getMessage());
 
 		tempFile.deleteOnExit();
 	}
