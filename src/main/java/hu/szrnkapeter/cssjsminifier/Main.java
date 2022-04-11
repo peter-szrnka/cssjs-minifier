@@ -20,38 +20,18 @@ public class Main {
 
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
-	/**
-	 * 1. argument: Directory of js files
-	 * 2. argument: optimization mode [whitespace, simple, advanced]
-	 * @param args
-	 * @throws Exception
-	 */
 	public static void main(final String[] args) throws Exception {
 		final Config config = PropertyUtil.loadProperties();
 		final JSCompressorFactory jsCompressorFactory = new JSCompressorFactory(config.getJsCompressor());
 		final CSSCompressorFactory cssCompressorFactory = new CSSCompressorFactory(config.getCssCompressor());
 
 		if (config.getCssFolder() != null) {
-			executeCompression("css", config.getCssFolder(), config.getCssOut(), path -> {
-				try {
-					return cssCompressorFactory.getCssCompressor().compress(path);
-				} catch (Exception e) {
-					LOGGER.warning("Unexpected exception occured!" + e.getMessage());
-				}
-				
-				return null;
-			});
+			executeCompression("css", config.getCssFolder(), config.getCssOut(), path -> 
+				cssCompressorFactory.getCssCompressor().compress(path));
 		}
 		if (config.getJsFolder() != null) {
-			executeCompression("js", config.getJsFolder(), config.getJsOut(), path -> {
-				try {
-					return jsCompressorFactory.getJsCompressor().compress(path, config.getJsCompileType());
-				} catch (Exception e) {
-					LOGGER.warning("Unexpected exception occured!" + e.getMessage());
-				}
-				
-				return null;
-			});
+			executeCompression("js", config.getJsFolder(), config.getJsOut(), path -> 
+				jsCompressorFactory.getJsCompressor().compress(path, config.getJsCompileType()));
 		}
 	}
 	
