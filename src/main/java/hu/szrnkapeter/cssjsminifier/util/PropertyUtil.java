@@ -51,7 +51,7 @@ public class PropertyUtil {
                 try {
                     input.close();
                 } catch (final IOException e) {
-                    e.printStackTrace();
+                	LOGGER.severe(e::getMessage);
                 }
             }
         }
