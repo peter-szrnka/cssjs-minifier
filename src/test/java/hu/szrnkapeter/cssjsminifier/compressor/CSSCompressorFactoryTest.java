@@ -30,6 +30,6 @@ class CSSCompressorFactoryTest {
 		final CSSCompressorFactory factory = new CSSCompressorFactory("yui");
 		final CSSCompressor compressor = factory.getCssCompressor();
 
-		assertTrue(compressor instanceof YUICSSCompressor == true);
+		assertTrue(compressor instanceof YUICSSCompressor);
 	}
 }

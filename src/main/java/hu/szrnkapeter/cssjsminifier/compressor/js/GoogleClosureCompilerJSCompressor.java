@@ -20,7 +20,7 @@ public class GoogleClosureCompilerJSCompressor implements JSCompressor {
 	private static final Logger LOGGER = Logger.getLogger(GoogleClosureCompilerJSCompressor.class.getName());
 
 	@Override
-	public String compress(final String inputFilename, final JSCompileType compileType) throws Exception {
+	public String compress(final String inputFilename, final JSCompileType compileType) {
 		final Compiler compiler = new Compiler();
 		final CompilerOptions options = new CompilerOptions();
 		options.setLanguageIn(LanguageMode.ECMASCRIPT5);
