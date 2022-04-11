@@ -7,7 +7,7 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-public class CustomFileNameFilterTest {
+class CustomFileNameFilterTest {
 
     private static final String EXTENSION1 = "css";
     private static final String EXTENSION2 = "js";

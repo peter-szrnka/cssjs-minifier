@@ -10,7 +10,7 @@ import hu.szrnkapeter.cssjsminifier.compressor.js.GoogleClosureCompilerJSCompres
 import hu.szrnkapeter.cssjsminifier.compressor.js.JSCompressor;
 import hu.szrnkapeter.cssjsminifier.compressor.js.YUIJSCompressor;
 
-public class JSCompressorFactoryTest {
+class JSCompressorFactoryTest {
 
 	@Test
 	void test_Exception() {

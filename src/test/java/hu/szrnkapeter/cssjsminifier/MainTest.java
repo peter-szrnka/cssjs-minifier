@@ -6,13 +6,34 @@ import java.io.FileWriter;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class MainTest {
+import hu.szrnkapeter.cssjsminifier.util.TestLogHandler;
+import hu.szrnkapeter.cssjsminifier.util.TestUtils;
+
+class MainTest {
+	
+	private TestLogHandler logHandler = new TestLogHandler();
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+	
+	@BeforeEach
+	void setup() {
+		LOGGER.addHandler(logHandler);
+	}
+	
+	@AfterEach
+	void teardown() {
+		logHandler.clearRecords();
+		LOGGER.removeHandler(logHandler);
+	}
 
 	@Test
-	public void test_CSSwithfiles() throws Exception {
+	void test_CSSwithfiles() throws Exception {
 		final String[] strings = new String[0];
 
 		final Path currentDir = FileSystems.getDefault().getPath(new File("").getAbsolutePath() + "/testcss/");
@@ -38,10 +59,13 @@ public class MainTest {
 		Files.deleteIfExists(tempMinifiedFile);
 		Files.deleteIfExists(tempFile);
 		Files.deleteIfExists(tempDir);
+		
+		TestUtils.assertLogExists(logHandler.getList(), Level.INFO, "CSS folder");
+		TestUtils.assertLogExists(logHandler.getList(), Level.INFO, "JS folder");
 	}
 
 	@Test
-	public void test_JSwithfiles() throws Exception {
+	void test_JSwithfiles() throws Exception {
 		final String[] strings = new String[0];
 
 		final Path currentDir = FileSystems.getDefault().getPath(new File("").getAbsolutePath() + "/testjs/");
@@ -67,10 +91,13 @@ public class MainTest {
 		Files.deleteIfExists(tempMinifiedFile);
 		Files.deleteIfExists(tempFile);
 		Files.deleteIfExists(tempDir);
+		
+		TestUtils.assertLogExists(logHandler.getList(), Level.INFO, "CSS folder");
+		TestUtils.assertLogExists(logHandler.getList(), Level.INFO, "JS folder");
 	}
 
 	@Test
-	public void test_JSwithoutfiles() throws Exception {
+	void test_JSwithoutfiles() throws Exception {
 		final String[] strings = new String[0];
 
 		final Path currentDir = FileSystems.getDefault().getPath(new File("").getAbsolutePath() + "/testjs/");
@@ -78,5 +105,8 @@ public class MainTest {
 
 		Main.main(strings);
 		Files.deleteIfExists(tempDir);
+		
+		TestUtils.assertLogExists(logHandler.getList(), Level.INFO, "CSS folder");
+		TestUtils.assertLogExists(logHandler.getList(), Level.INFO, "JS folder");
 	}
 }

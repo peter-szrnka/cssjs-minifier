@@ -10,9 +10,6 @@ public class Config {
 	private String jsFolder;
 	private String jsOut;
 
-	public Config() {
-	}
-
 	public String getCssCompressor() {
 		return cssCompressor;
 	}

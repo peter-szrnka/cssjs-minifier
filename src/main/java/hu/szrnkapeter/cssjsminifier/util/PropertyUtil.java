@@ -20,7 +20,7 @@ public class PropertyUtil {
         final Properties prop = new Properties();
         InputStream input = null;
 
-        if (PropertyUtil.class.getClassLoader().getResource(propertyFile) == null) {
+        if (PropertyUtil.class.getClassLoader().getResourceAsStream(propertyFile) == null) {
         	LOGGER.info(() -> "No configuration file exists.");
             config.setJsCompressor("yui");
             config.setJsFolder(".");
