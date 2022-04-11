@@ -9,14 +9,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import hu.szrnkapeter.cssjsminifier.util.TestLogHandler;
+import hu.szrnkapeter.cssjsminifier.util.LogHandler;
 import hu.szrnkapeter.cssjsminifier.util.TestUtils;
 
 
 class YuiCompressorErrorReporterTest {
 	
 	private YuiCompressorErrorReporter reporter = new YuiCompressorErrorReporter();
-	private TestLogHandler logHandler = new TestLogHandler();
+	private LogHandler logHandler = new LogHandler();
 	private static final Logger LOGGER = Logger.getLogger(YuiCompressorErrorReporter.class.getName());
 	
 	@BeforeEach
