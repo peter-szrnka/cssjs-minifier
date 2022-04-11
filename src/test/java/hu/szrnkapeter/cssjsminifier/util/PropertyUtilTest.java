@@ -1,20 +1,28 @@
 package hu.szrnkapeter.cssjsminifier.util;
 
-import org.junit.Assert;
-import org.junit.Test;
 
-public class PropertyUtilTest {
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @Test
-    public void test_withoutPropertyFile() {
-        final Config config = PropertyUtil.loadProperties("test.properties");
-        Assert.assertEquals("Wrong js compile type!", JSCompileType.SIMPLE, config.getJsCompileType());
-    }
+import org.junit.jupiter.api.Test;
 
-    @Test
-    public void test_withPropertyFile() {
-        final Config config = PropertyUtil.loadProperties();
+class PropertyUtilTest {
 
-        Assert.assertEquals("Wrong js compile type!", JSCompileType.ADVANCED, config.getJsCompileType());
-    }
+	@Test
+	void testPrivateConstructor() {
+		assertDoesNotThrow(() -> TestUtils.testPrivateConstructor(PropertyUtil.class));
+	}
+
+	@Test
+	void test_withoutPropertyFile() {
+		final Config config = PropertyUtil.loadProperties("test.properties");
+		assertEquals(JSCompileType.SIMPLE, config.getJsCompileType());
+	}
+
+	@Test
+	void test_withPropertyFile() {
+		final Config config = PropertyUtil.loadProperties();
+
+		assertEquals(JSCompileType.ADVANCED, config.getJsCompileType());
+	}
 }

@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.logging.Logger;
 
 import hu.szrnkapeter.cssjsminifier.compressor.CSSCompressorFactory;
 import hu.szrnkapeter.cssjsminifier.compressor.JSCompressorFactory;
@@ -13,6 +14,8 @@ import hu.szrnkapeter.cssjsminifier.util.Config;
 import hu.szrnkapeter.cssjsminifier.util.PropertyUtil;
 
 public class Main {
+
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());  
 
 	/**
 	 * 1. argument: Directory of js files
@@ -34,11 +37,11 @@ public class Main {
 				long i = 0;
 				final BufferedWriter writer = new BufferedWriter(new FileWriter(config.getCssOut()));
 				for (final File item : folder.listFiles(filter)) {
-					System.out.print("File: " + item.getName() + "; Filesize: " + item.length() / 1024 + "KB");
+					LOGGER.info("File: " + item.getName() + "; Filesize: " + item.length() / 1024 + "KB");
 					if (!item.getName().toLowerCase().endsWith(".min.css")) {
 						writer.append(cssCompressorFactory.getCssCompressor().compress(item.getAbsolutePath()));
 						writer.newLine();
-						System.out.println(" - compressed");
+						LOGGER.info(" - compressed");
 					} else {
 						try (BufferedReader reader = new BufferedReader(new FileReader(item))) {
 							String line;
@@ -47,15 +50,15 @@ public class Main {
 								writer.newLine();
 							}
 						}
-						System.out.println(" - compress skipped");
+						LOGGER.info(" - compress skipped");
 					}
 					i++;
 				}
 				writer.close();
-				System.out.println("--------------------------------------");
-				System.out.println(i + " file added. CSS Output: " + config.getCssOut());
+				LOGGER.info("--------------------------------------");
+				LOGGER.info(String.format("%d file added. CSS Output: %s", i, config.getCssOut()));
 			} else {
-				System.out.println("No css file found.");
+				LOGGER.info("No css file found.");
 			}
 
 		}
@@ -74,7 +77,7 @@ public class Main {
 						writer.append(jsCompressorFactory.getJsCompressor().compress(item.getAbsolutePath(), config.getJsCompileType()));
 						writer.newLine();
 
-						System.out.println(" - compressed");
+						LOGGER.info(" - compressed");
 					} else {
 						try (BufferedReader reader = new BufferedReader(new FileReader(item))) {
 							String line;
@@ -83,15 +86,15 @@ public class Main {
 								writer.newLine();
 							}
 						}
-						System.out.println(" - compress skipped");
+						LOGGER.info(" - compress skipped");
 					}
 					i++;
 				}
 				writer.close();
-				System.out.println("--------------------------------------");
+				LOGGER.info("--------------------------------------");
 				System.out.println(i + " file added. JS Output: " + config.getJsOut());
 			} else {
-				System.out.println("No js file found.");
+				LOGGER.info("No js file found.");
 			}
 		}
 	}

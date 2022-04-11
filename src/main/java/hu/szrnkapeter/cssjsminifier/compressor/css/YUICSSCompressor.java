@@ -15,11 +15,9 @@ public class YUICSSCompressor implements CSSCompressor {
 		Reader in = new InputStreamReader(new FileInputStream(inputFilename), StandardCharsets.UTF_8);
 		final CssCompressor compressor = new CssCompressor(in);
 		in.close();
-		in = null;
 
 		final StringWriter out = new StringWriter();
 		compressor.compress(out, -1);
 		return out.toString();
 	}
-
 }

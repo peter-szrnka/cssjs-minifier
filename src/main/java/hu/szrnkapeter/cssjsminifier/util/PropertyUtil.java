@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyUtil {
+	
+	private PropertyUtil() {}
 
     public static Config loadProperties() {
         return loadProperties("config.properties");
