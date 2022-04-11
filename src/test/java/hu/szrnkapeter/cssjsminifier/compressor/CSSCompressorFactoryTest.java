@@ -1,33 +1,35 @@
 package hu.szrnkapeter.cssjsminifier.compressor;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 import hu.szrnkapeter.cssjsminifier.compressor.css.CSSCompressor;
 import hu.szrnkapeter.cssjsminifier.compressor.css.YUICSSCompressor;
 
+class CSSCompressorFactoryTest {
 
-public class CSSCompressorFactoryTest {
-
-	@Test(expected = UnsupportedOperationException.class)
-	public void test_Exception() {
-		final CSSCompressorFactory factory = new CSSCompressorFactory("yuiyui");
-		factory.getCssCompressor();
+	@Test
+	void test_Exception() {
+		assertThrows(UnsupportedOperationException.class, () ->new CSSCompressorFactory("yuiyui"));
 	}
 
 	@Test
-	public void test_GetYUICompressor() {
+	void test_GetYUICompressor() {
 		final CSSCompressorFactory factory = new CSSCompressorFactory("yui");
 		final CSSCompressor compressor = factory.getCssCompressor();
 
-		Assert.assertNotNull("Compressor must not be null!", compressor);
+		assertNotNull(compressor);
 	}
 
 	@Test
-	public void test_Normal() {
+	void test_Normal() {
 		final CSSCompressorFactory factory = new CSSCompressorFactory("yui");
 		final CSSCompressor compressor = factory.getCssCompressor();
 
-		Assert.assertTrue("The compressor must be an instance of YUICSSCompressor!", compressor instanceof YUICSSCompressor == true);
+		assertTrue(compressor instanceof YUICSSCompressor == true);
 	}
 }

@@ -68,5 +68,4 @@ public class Config {
 	public void setJsOut(final String jsOut) {
 		this.jsOut = jsOut;
 	}
-
 }

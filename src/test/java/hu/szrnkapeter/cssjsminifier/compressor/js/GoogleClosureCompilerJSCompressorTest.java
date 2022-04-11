@@ -1,18 +1,19 @@
 package hu.szrnkapeter.cssjsminifier.compressor.js;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
 
-public class GoogleClosureCompilerJSCompressorTest {
+class GoogleClosureCompilerJSCompressorTest {
 
 	@Test
-	public void test_normal_advanced_empty() throws Exception {
+	void test_normal_advanced_empty() throws Exception {
 		final GoogleClosureCompilerJSCompressor compressor = new GoogleClosureCompilerJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
 		final BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
@@ -24,11 +25,11 @@ public class GoogleClosureCompilerJSCompressorTest {
 
 		tempFile.deleteOnExit();
 
-		Assert.assertEquals("Wrong result!", "", result);
+		assertEquals("", result);
 	}
 
 	@Test
-	public void test_normal_advanced_withcall() throws Exception {
+	void test_normal_advanced_withcall() throws Exception {
 		final GoogleClosureCompilerJSCompressor compressor = new GoogleClosureCompilerJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
 		final BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
@@ -40,11 +41,11 @@ public class GoogleClosureCompilerJSCompressorTest {
 
 		tempFile.deleteOnExit();
 
-		Assert.assertEquals("Wrong result!", "alert(void 0);", result);
+		assertEquals("alert(void 0);", result);
 	}
 
 	@Test
-	public void test_normal_simple() throws Exception {
+	void test_normal_simple() throws Exception {
 		final GoogleClosureCompilerJSCompressor compressor = new GoogleClosureCompilerJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
 		final BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
@@ -56,11 +57,11 @@ public class GoogleClosureCompilerJSCompressorTest {
 
 		tempFile.deleteOnExit();
 
-		Assert.assertEquals("Wrong result!", "var doit=function(a){alert(a)};", result);
+		assertEquals("var doit=function(a){alert(a)};", result);
 	}
 
 	@Test
-	public void test_normal_whitespace() throws Exception {
+	void test_normal_whitespace() throws Exception {
 		final GoogleClosureCompilerJSCompressor compressor = new GoogleClosureCompilerJSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
 		final BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
@@ -72,6 +73,6 @@ public class GoogleClosureCompilerJSCompressorTest {
 
 		tempFile.deleteOnExit();
 
-		Assert.assertEquals("Wrong result!", "var doit=function(str){alert(str)};", result);
+		assertEquals("var doit=function(str){alert(str)};", result);
 	}
 }

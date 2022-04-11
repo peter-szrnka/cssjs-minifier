@@ -1,16 +1,17 @@
 package hu.szrnkapeter.cssjsminifier.compressor.css;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class YUICSSCompressorTest {
+class YUICSSCompressorTest {
 
 	@Test
-	public void test() throws Exception {
+	void test() throws Exception {
 		final YUICSSCompressor compressor = new YUICSSCompressor();
 		final File tempFile = File.createTempFile("prefix", "suffix");
 		final BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
@@ -22,7 +23,7 @@ public class YUICSSCompressorTest {
 
 		tempFile.deleteOnExit();
 
-		Assert.assertEquals("Wrong result!", ".custom-style{color:fff;}", result);
+		assertEquals(".custom-style{color:fff;}", result);
 	}
 }
 

@@ -15,5 +15,4 @@ public class CustomFileNameFilter implements FilenameFilter {
     public boolean accept(final File dir, final String name) {
         return name.toLowerCase().endsWith(extension);
     }
-
 }

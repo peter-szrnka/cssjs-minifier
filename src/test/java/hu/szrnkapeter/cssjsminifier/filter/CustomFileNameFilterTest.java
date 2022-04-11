@@ -1,9 +1,11 @@
 package hu.szrnkapeter.cssjsminifier.filter;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.File;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CustomFileNameFilterTest {
 
@@ -11,26 +13,26 @@ public class CustomFileNameFilterTest {
     private static final String EXTENSION2 = "js";
 
     @Test
-    public void test_negative() {
+    void test_negative() {
         final CustomFileNameFilter filter = new CustomFileNameFilter(EXTENSION1);
         final boolean result = filter.accept(new File("."), "test_file1.java");
 
-        Assert.assertFalse("The result cannot be true!", result);
+        assertFalse(result);
     }
 
     @Test
-    public void test_positive1() {
+    void test_positive1() {
         final CustomFileNameFilter filter = new CustomFileNameFilter(EXTENSION1);
         final boolean result = filter.accept(new File("."), "test_file1.cSs");
 
-        Assert.assertTrue("The result cannot be false!", result);
+        assertTrue(result);
     }
 
     @Test
-    public void test_positive2() {
+    void test_positive2() {
         final CustomFileNameFilter filter = new CustomFileNameFilter(EXTENSION2);
         final boolean result = filter.accept(new File("."), "UPPERCASEFILE.JS");
 
-        Assert.assertTrue("The result cannot be false!", result);
+        assertTrue(result);
     }
 }
