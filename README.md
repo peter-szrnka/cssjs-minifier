@@ -4,9 +4,9 @@ A small, Java based CSS/JS file merger & compressor. ( First I created it for my
 
 ## Current status
 
-| Build | Code coverage |
-| ------------- | ------------- |
-| [![CodeQL](https://github.com/szrnka-peter/cssjs-minifier/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/szrnka-peter/cssjs-minifier/actions/workflows/codeql-analysis.yml) | [![codecov](https://codecov.io/gh/szrnka-peter/cssjs-minifier/branch/master/graph/badge.svg)](https://codecov.io/gh/szrnka-peter/cssjs-minifier)|
+| Build | Code coverage | Code quality |
+| ----- | ------------- | ------------ |
+| [![CodeQL](https://github.com/szrnka-peter/cssjs-minifier/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/szrnka-peter/cssjs-minifier/actions/workflows/codeql-analysis.yml) | [![codecov](https://codecov.io/gh/szrnka-peter/cssjs-minifier/branch/master/graph/badge.svg)](https://codecov.io/gh/szrnka-peter/cssjs-minifier)| [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=szrnka-peter_cssjs-minifier&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=szrnka-peter_cssjs-minifier) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=szrnka-peter_cssjs-minifier&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=szrnka-peter_cssjs-minifier) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=szrnka-peter_cssjs-minifier&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=szrnka-peter_cssjs-minifier) |
 
 ## Used technologies
 - Java 11
