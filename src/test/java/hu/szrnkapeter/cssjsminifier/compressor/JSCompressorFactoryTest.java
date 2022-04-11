@@ -14,8 +14,7 @@ public class JSCompressorFactoryTest {
 
 	@Test
 	void test_Exception() {
-		final JSCompressorFactory factory = new JSCompressorFactory("yuiyui");
-		assertThrows(UnsupportedOperationException.class, () -> factory.getJsCompressor());
+		assertThrows(UnsupportedOperationException.class, () -> new JSCompressorFactory("yuiyui"));
 	}
 
 	@Test

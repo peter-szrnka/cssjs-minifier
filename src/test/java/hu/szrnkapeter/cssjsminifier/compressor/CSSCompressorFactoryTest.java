@@ -14,9 +14,7 @@ class CSSCompressorFactoryTest {
 
 	@Test
 	void test_Exception() {
-		final CSSCompressorFactory factory = new CSSCompressorFactory("yuiyui");
-		
-		assertThrows(UnsupportedOperationException.class, () -> factory.getCssCompressor());
+		assertThrows(UnsupportedOperationException.class, () ->new CSSCompressorFactory("yuiyui"));
 	}
 
 	@Test

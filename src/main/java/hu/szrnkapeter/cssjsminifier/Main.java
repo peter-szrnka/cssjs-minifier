@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
 
 import hu.szrnkapeter.cssjsminifier.compressor.CSSCompressorFactory;
@@ -29,52 +31,42 @@ public class Main {
 		final CSSCompressorFactory cssCompressorFactory = new CSSCompressorFactory(config.getCssCompressor());
 
 		if (config.getCssFolder() != null) {
-			// Currently it's just merge the css files
-			final File folder = new File(config.getCssFolder());
-			final CustomFileNameFilter filter = new CustomFileNameFilter("css");
-
-			if (folder.isDirectory() && folder.listFiles(filter).length > 0) {
-				long i = 0;
-				final BufferedWriter writer = new BufferedWriter(new FileWriter(config.getCssOut()));
-				for (final File item : folder.listFiles(filter)) {
-					LOGGER.info("File: " + item.getName() + "; Filesize: " + item.length() / 1024 + "KB");
-					if (!item.getName().toLowerCase().endsWith(".min.css")) {
-						writer.append(cssCompressorFactory.getCssCompressor().compress(item.getAbsolutePath()));
-						writer.newLine();
-						LOGGER.info(" - compressed");
-					} else {
-						try (BufferedReader reader = new BufferedReader(new FileReader(item))) {
-							String line;
-							while ((line = reader.readLine()) != null) {
-								writer.append(line);
-								writer.newLine();
-							}
-						}
-						LOGGER.info(" - compress skipped");
-					}
-					i++;
+			executeCompression("css", config.getCssFolder(), config.getCssOut(), path -> {
+				try {
+					return cssCompressorFactory.getCssCompressor().compress(path);
+				} catch (Exception e) {
+					LOGGER.warning("Unexpected exception occured!" + e.getMessage());
 				}
-				writer.close();
-				LOGGER.info("--------------------------------------");
-				LOGGER.info(String.format("%d file added. CSS Output: %s", i, config.getCssOut()));
-			} else {
-				LOGGER.info("No css file found.");
-			}
-
+				
+				return null;
+			});
 		}
 		if (config.getJsFolder() != null) {
-			final File folder = new File(config.getJsFolder());
-			System.out.println("JS folder: " + folder.getAbsolutePath());
-			final CustomFileNameFilter filter = new CustomFileNameFilter("js");
-			long i = 0;
+			executeCompression("js", config.getJsFolder(), config.getJsOut(), path -> {
+				try {
+					return jsCompressorFactory.getJsCompressor().compress(path, config.getJsCompileType());
+				} catch (Exception e) {
+					LOGGER.warning("Unexpected exception occured!" + e.getMessage());
+				}
+				
+				return null;
+			});
+		}
+	}
+	
+	private static void executeCompression(String scope, String folderPath, String outPath, UnaryOperator<String> supplyFunction) throws IOException {
+		final File folder = new File(folderPath);
+		LOGGER.info(scope + " folder: " + folder.getAbsolutePath());
+		final CustomFileNameFilter filter = new CustomFileNameFilter(scope);
+		long i = 0;
 
-			if (folder.isDirectory() && folder.listFiles(filter).length > 0) {
-				final BufferedWriter writer = new BufferedWriter(new FileWriter(config.getJsOut()));
+		if (folder.isDirectory() && folder.listFiles(filter).length > 0) {
+			try(BufferedWriter writer = new BufferedWriter(new FileWriter(outPath))) {
 				for (final File item : folder.listFiles(filter)) {
 
-					System.out.print("File: " + item.getName() + "; Filesize: " + item.length() / 1024 + "KB");
-					if (!item.getName().toLowerCase().endsWith(".min.js")) {
-						writer.append(jsCompressorFactory.getJsCompressor().compress(item.getAbsolutePath(), config.getJsCompileType()));
+					LOGGER.info(String.format("File: %s; Filesize: %s KB", item.getName(), (item.length() / 1024)));
+					if (!item.getName().toLowerCase().endsWith(".min." + scope)) {
+						writer.append(supplyFunction.apply(item.getAbsolutePath()));
 						writer.newLine();
 
 						LOGGER.info(" - compressed");
@@ -90,12 +82,12 @@ public class Main {
 					}
 					i++;
 				}
-				writer.close();
-				LOGGER.info("--------------------------------------");
-				System.out.println(i + " file added. JS Output: " + config.getJsOut());
-			} else {
-				LOGGER.info("No js file found.");
 			}
+
+			LOGGER.info("--------------------------------------");
+			LOGGER.info(i + " file added. " + scope + " Output: " + outPath);
+		} else {
+			LOGGER.info("No " + scope + " file found.");
 		}
 	}
 }
