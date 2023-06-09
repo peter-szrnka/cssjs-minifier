@@ -25,8 +25,8 @@ public class GoogleClosureCompilerJSCompressor implements JSCompressor {
 	public String compress(final String inputFilename, final JSCompileType compileType) {
 		final Compiler compiler = new Compiler();
 		final CompilerOptions options = new CompilerOptions();
-		options.setLanguageIn(LanguageMode.ECMASCRIPT6);
-		options.setLanguageOut(LanguageMode.ECMASCRIPT6);
+		options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+		options.setLanguageOut(LanguageMode.ECMASCRIPT5);
 
 		compileType.getLevel().setOptionsForCompilationLevel(options);
 
