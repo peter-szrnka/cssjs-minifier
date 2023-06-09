@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+/**
+ * @author Peter Szrnka
+ */
 public class PropertyUtil {
 	
 	private static final Logger LOGGER = Logger.getLogger(PropertyUtil.class.getName());
@@ -16,25 +19,16 @@ public class PropertyUtil {
     }
 
     public static Config loadProperties(String propertyFile) {
-        final Config config = new Config();
         final Properties prop = new Properties();
 
         if (PropertyUtil.class.getClassLoader().getResourceAsStream(propertyFile) == null) {
         	LOGGER.info(() -> "No configuration file exists.");
-            config.setJsCompressor("yui");
-            config.setJsFolder(".");
-            config.setJsOut("./out.min.js");
-            config.setJsCompileType(JSCompileType.SIMPLE);
-            config.setCssCompressor("yui");
-            config.setCssFolder(".");
-            config.setCssOut("./out.min.css");
-            return config;
+            return getDefaultConfig();
         }
 
+        final Config config = new Config();
         try (InputStream input = PropertyUtil.class.getClassLoader().getResourceAsStream(propertyFile)) {
- 
             prop.load(input);
-
             config.setJsCompressor(prop.getProperty("jscompressor"));
             config.setJsFolder(prop.getProperty("jsfolder"));
             config.setJsOut(prop.getProperty("jsout"));
@@ -47,6 +41,18 @@ public class PropertyUtil {
         	LOGGER.severe(ex::getMessage);
         }
 
+        return config;
+    }
+
+    private static Config getDefaultConfig() {
+    	final Config config = new Config();
+    	config.setJsCompressor("yui");
+        config.setJsFolder(".");
+        config.setJsOut("./out.min.js");
+        config.setJsCompileType(JSCompileType.SIMPLE);
+        config.setCssCompressor("yui");
+        config.setCssFolder(".");
+        config.setCssOut("./out.min.css");
         return config;
     }
 }

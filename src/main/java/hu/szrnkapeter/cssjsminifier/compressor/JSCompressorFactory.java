@@ -4,6 +4,9 @@ import hu.szrnkapeter.cssjsminifier.compressor.js.GoogleClosureCompilerJSCompres
 import hu.szrnkapeter.cssjsminifier.compressor.js.JSCompressor;
 import hu.szrnkapeter.cssjsminifier.compressor.js.YUIJSCompressor;
 
+/**
+ * @author Peter Szrnka
+ */
 public class JSCompressorFactory {
 
 	private JSCompressor jsCompressor;

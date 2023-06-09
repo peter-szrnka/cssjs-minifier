@@ -1,5 +1,8 @@
 package hu.szrnkapeter.cssjsminifier.util;
 
+/**
+ * @author Peter Szrnka
+ */
 public class Config {
 
 	private String cssCompressor;
