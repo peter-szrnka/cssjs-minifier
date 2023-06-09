@@ -3,6 +3,9 @@ package hu.szrnkapeter.cssjsminifier.compressor;
 import hu.szrnkapeter.cssjsminifier.compressor.css.CSSCompressor;
 import hu.szrnkapeter.cssjsminifier.compressor.css.YUICSSCompressor;
 
+/**
+ * @author Peter Szrnka
+ */
 public class CSSCompressorFactory {
 
 	private CSSCompressor cssCompressor;

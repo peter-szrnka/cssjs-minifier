@@ -5,6 +5,9 @@ import java.util.logging.Logger;
 import org.mozilla.javascript.ErrorReporter;
 import org.mozilla.javascript.EvaluatorException;
 
+/**
+ * @author Peter Szrnka
+ */
 public class YuiCompressorErrorReporter implements ErrorReporter {
 
 	private static final Logger LOGGER = Logger.getLogger(YuiCompressorErrorReporter.class.getName());

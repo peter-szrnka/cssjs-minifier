@@ -12,6 +12,9 @@ import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 
 import hu.szrnkapeter.cssjsminifier.util.JSCompileType;
 
+/**
+ * @author Peter Szrnka
+ */
 public class YUIJSCompressor implements JSCompressor {
 	
 	private static final Logger LOGGER = Logger.getLogger(YUIJSCompressor.class.getName());

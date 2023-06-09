@@ -10,6 +10,9 @@ import java.util.logging.Logger;
 
 import com.yahoo.platform.yui.compressor.CssCompressor;
 
+/**
+ * @author Peter Szrnka
+ */
 public class YUICSSCompressor implements CSSCompressor {
 	
 	private static final Logger LOGGER = Logger.getLogger(YUICSSCompressor.class.getName());
